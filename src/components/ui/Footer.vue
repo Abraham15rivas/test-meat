@@ -88,10 +88,10 @@ export default {
 
   methods: {
     sendData(){
-      if (!Object.keys(this.subscriptor.data).length) {
+      if (Object.keys(this.subscriptor.data).length < 4) {
         this.$root.notifications.show({
           title: 'Error!',
-          info: 'Los campos deben estar completados',
+          info: 'Todos los campos deben estar completados',
           color: 'error',
           icon: 'mdi-close-circle-outline'
         })
