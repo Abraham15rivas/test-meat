@@ -1,7 +1,7 @@
 <template>
   <v-container>
     <v-row>
-      <v-col class="px-0" cols="12" v-for="(article, index) in articles.data" :key="index">
+      <v-col class="px-0" sm="6" md="5" lg="3" v-for="(article, index) in articles.data" :key="index">
         <v-card
           class="mx-2 card"
           elevation="1"

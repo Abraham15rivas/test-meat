@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="d-flex justify-center">
-      <span class="title mt-16">Contáctanos</span> 
+      <span class="title mt-16">Contáctanos</span>
     </div>
     <v-container>
       <v-row class="mt-10" justify="center">
@@ -88,6 +88,16 @@ export default {
 
   methods: {
     sendData(){
+      if (Object.keys(this.subscriptor.data).length) {
+        this.$root.notifications.show({
+          title: 'Error!',
+          info: 'Los campos deben estar completados',
+          color: 'error',
+          icon: 'mdi-close-circle-outline'
+        })
+        return false
+      }
+
       this.subscriptor.loading = true
       try {
         repository.createNewsletter(this.subscriptor.data).then(res => {
