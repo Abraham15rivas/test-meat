@@ -88,7 +88,7 @@ export default {
 
   methods: {
     sendData(){
-      if (Object.keys(this.subscriptor.data).length) {
+      if (!Object.keys(this.subscriptor.data).length) {
         this.$root.notifications.show({
           title: 'Error!',
           info: 'Los campos deben estar completados',
