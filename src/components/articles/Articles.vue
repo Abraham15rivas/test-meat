@@ -1,72 +1,40 @@
 <template>
-  <v-container>
-    <v-row v-if="articles.loading">
-      <v-col
-        class="px-0"
-        cols="12"
-        md="4"
-        v-for="(loader, index) in 3"
-        :key="index"
-       >
-        <v-skeleton-loader
-          class="mx-3"
-          v-bind="attrs"
-          type=" image, article"
-        ></v-skeleton-loader>
-      </v-col>
-    </v-row>
-    <v-row v-else>
-      <v-col
-        class="px-0"
-        cols="12"
-        md="4"
+  <div class="container">
+    <section class="container__loading" v-if="articles.loading">
+      <Loading />
+    </section>
+    <section v-else class="container__cards">
+      <article
+        class="container__card"
         v-for="(article, index) in articles.data"
         :key="index"
-       >
-        <v-hover v-slot="{ hover }">
-          <v-card
-            class="mx-auto card card-hover"
-            elevation="1"
-          >
-            <v-img
-              class="image-card"
-              height="200px"
-              :src="article.image"
-              contain
-            ></v-img>
-
-            <v-card-title class="title-card pb-0">
-              {{ article.title }}
-            </v-card-title>
-
-            <v-card-text class="content-card">
+      >
+        <div>
+          <figure class="container__figure">
+            <img class="container__card__img" :src="article.image" alt="" />
+          </figure>
+          <div class="container__body-card">
+            <h3 class="container__body-card-h3">{{ article.title }}</h3>
+            <p>
               {{ article.content }}
-            </v-card-text>
-            <v-expand-transition>
-              <v-card-actions
-                v-if="hover"
-                class=""
-              >
-              <v-btn
-                color="orange"
-                text
-              >
-                Ver más
-              </v-btn>
-            </v-card-actions>
-            </v-expand-transition>
-
-          </v-card>
-          </v-hover>
-      </v-col>
-    </v-row>
-  </v-container>
+            </p>
+            <a href="#" class="container__read-more">
+              Ver más
+            </a>
+          </div>
+        </div>
+      </article>
+    </section>
+  </div>
 </template>
 
 <script>
 import repository from "@/api/repository";
 export default {
   name: 'CardsView',
+  components:{
+    Loading: () => import(/* webpackPrefetch: true */ '@/components/loading/Loading'),
+  },
   data() {
     return {
       articles: {
@@ -113,30 +81,85 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .card{
-    width: 270px;
-    border-radius: 0px 0px 10px 10px;
-    box-shadow: 0px 4px 40px 0px #00000012;
-  }
+  .container {
+    display: flex;
+    flex-wrap: wrap;
 
-  .image-card{
-    border-radius: 10px 10px 0px 0px !important;
-  }
+    &__loading {
+      width: 100%;
+      margin-top: 10%;
+      align-items: center;
+      justify-content: center;
+    }
 
-  .title-card{
-    font-family: 'Open Sans', sans-serif !important;
-    font-weight: 700;
-    font-size: 18px;
-    font-style: normal !important;
-  }
+    &__cards {
+      display: grid;
+      max-width: 1200px;
+      margin-inline: auto;
+      padding-inline: 24px;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 24px;
+    }
 
-  .content-card{
-    font-weight: 400;
-    font-size: 14px;
-    color: #24272A;
-  }
+    &__card {
+      --img-scale: 1.001;
+      --title-color: black;
+      --link-icon-translate: -20px;
+      --link-icon-opacity: 0;
+      position: relative;
+      border-radius: 16px;
+      box-shadow: none;
+      background: #fff;
+      transform-origin: center;
+      transition: all 0.4s ease-in-out;
+      overflow: hidden;
+      box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+      &__img {
+        max-width: 100%;
+        transform-origin: center;
+        transform: scale(var(--img-scale));
+        transition: transform 0.4s ease-in-out;
+      }
+    }
 
-  .card-hover:hover {
-    color: orange;
+    &__body-card {
+      padding: 24px;
+    }
+
+    &__body-card-h3 {
+      margin: 0 0 18px 0;
+      font-family: "Open Sans";
+      letter-spacing: 0.06em;
+      color: var(--title-color);
+      transition: color 0.3s ease-out;
+    }
+
+    &__card:has(:hover, :focus) {
+      --img-scale: 1.1;
+      --title-color: orange;
+      --link-icon-translate: 0;
+      --link-icon-opacity: 1;
+      .container__read-more {
+        display: block;
+        transition: all 0.4s ease-in-out;
+        text-decoration: none;
+      }
+    }
+
+    &__read-more {
+      text-transform: uppercase;
+      color: orange;
+      font-weight: bold;
+      display: none;
+      align-items: center;
+      text-decoration: none;
+    }
+
+    &__figure {
+      margin: 0;
+      padding: 0;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+    }
   }
 </style>
