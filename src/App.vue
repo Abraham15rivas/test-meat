@@ -33,8 +33,4 @@ export default {
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Caveat&family=Open+Sans&display=swap');
-  body {
-    background-color: #604FCD!important;
-  }
-
 </style>
