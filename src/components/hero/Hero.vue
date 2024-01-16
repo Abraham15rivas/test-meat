@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="hero">
+    <header class="hero">
       <img
         class="hero__image"
         src="../../assets/img/b2 1.png"
@@ -9,7 +9,7 @@
         <span class="hero__title">El secreto de tu cocina</span>
       </div>
       <div class="hero__gradient"></div>
-    </div>
+    </header>
   </div>
 </template>
 
