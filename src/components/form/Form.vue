@@ -132,6 +132,7 @@ export default {
 
     &__row {
       display: flex;
+      flex-wrap: wrap;
     }
 
     &__col--6 {
