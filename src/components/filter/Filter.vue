@@ -8,7 +8,7 @@
               'card-filter__span': true,
               'card-filter__span--active': (category === categorySelected)
             }"
-            @click="categorySelected = category"
+            @click="filter(category)"
           >
             {{ category }}
             <svg :class="{ 'card-filter__icon': true, 'card-filter__icon--active': (category === categorySelected) }" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
@@ -32,6 +32,7 @@
     },
     methods: {
       filter(categorySelected) {
+        this.categorySelected = categorySelected
         this.$emit('setFilter', categorySelected)
       }
     }
