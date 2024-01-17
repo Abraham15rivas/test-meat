@@ -14,6 +14,8 @@ export default {
 
 
 <style lang="scss" scoped>
+  $primary-color: #D8AD3D;
+
   .loading {
     width: 120px;
     height: 30px;
@@ -26,7 +28,7 @@ export default {
     &__balls {
       width: 30px;
       height: 30px;
-      background-color: orange;
+      background-color: $primary-color;
       animation: leap .5s alternate infinite;
       border-radius: 50%;
     }

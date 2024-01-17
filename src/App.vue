@@ -1,11 +1,11 @@
 <template>
-  <v-app>
-    <v-main>
+  <div>
+    <main>
       <Home />
-    </v-main>
-    <Footer/>
+    </main>
+    <Footer />
     <Notifications ref="notifications"/>
-  </v-app>
+  </div>
 </template>
 
 <script>
@@ -19,18 +19,19 @@ export default {
     Notifications: () => import(/* webpackPrefetch: true */ '@/components/ui/Notifications.vue')
   },
 
-  data: () => ({
-    //
-  }),
-
   mounted(){
     setTimeout(() => {
       this.$root.notifications = this.$refs.notifications
-    },500)
+    }, 500)
   },
 };
 </script>
 
-<style>
+<style lang="scss">
   @import url('https://fonts.googleapis.com/css2?family=Caveat&family=Open+Sans&display=swap');
+
+  body {
+    margin: 0px;
+    font-family: "Open Sans";
+  }
 </style>

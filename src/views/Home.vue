@@ -48,11 +48,12 @@ export default {
     }
 
     &__col--1 {
-      width: 20%;
+      padding-left: 100px;
+      width: 15%;
     }
 
     &__col--2 {
-      width: 80%;
+      width: 60%;
     }
   }
 </style>

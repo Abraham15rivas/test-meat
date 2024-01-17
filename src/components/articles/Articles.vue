@@ -81,7 +81,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+  $primary-color: #D8AD3D;
+
   .container {
+    font-family: "Open Sans";
     display: flex;
     flex-wrap: wrap;
 
@@ -136,7 +139,7 @@ export default {
 
     &__card:has(:hover, :focus) {
       --img-scale: 1.1;
-      --title-color: orange;
+      --title-color: #D8AD3D;
       --link-icon-translate: 0;
       --link-icon-opacity: 1;
       .container__read-more {
@@ -148,7 +151,7 @@ export default {
 
     &__read-more {
       text-transform: uppercase;
-      color: orange;
+      color: $primary-color;
       font-weight: bold;
       display: none;
       align-items: center;

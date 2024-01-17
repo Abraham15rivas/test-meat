@@ -6,7 +6,10 @@
           <label class="form__label" for="firstname">NOMBRE</label>
           <input
             id="firstname"
-            class="form__input"
+            :class="{
+              'form__input': true,
+              'form__input--disabled': (subscriptor.loading)
+            }"
             type="text"
             v-model="subscriptor.data.firstname"
             :disabled="subscriptor.loading"
@@ -17,7 +20,10 @@
           <label class="form__label" for="lastname">APELLIDO</label>
           <input
             id="lastname"
-            class="form__input"
+            :class="{
+              'form__input': true,
+              'form__input--disabled': (subscriptor.loading)
+            }"
             type="text"
             v-model="subscriptor.data.lastname"
             :disabled="subscriptor.loading"
@@ -31,7 +37,10 @@
           <label class="form__label" for="email">MAIL</label>
           <input
             id="email"
-            class="form__input"
+            :class="{
+              'form__input': true,
+              'form__input--disabled': (subscriptor.loading)
+            }"
             type="email"
             v-model="subscriptor.data.email"
             :disabled="subscriptor.loading"
@@ -42,8 +51,12 @@
           <label class="form__label" for="phone">TELÉFONO</label>
           <input
             id="phone"
-            class="form__input"
-            type="text"
+            :class="{
+              'form__input': true,
+              'form__input--disabled': (subscriptor.loading)
+            }"
+            type="number"
+            min="0"
             v-model="subscriptor.data.phone"
             :disabled="subscriptor.loading"
             required
@@ -53,7 +66,11 @@
 
       <center>
         <button
-          class="form__send-button"
+          :class="{
+            'form__send-button': true,
+            'form__send-button--disabled': (subscriptor.loading),
+            'form__send-button--default': (!subscriptor.loading)
+          }"
           type="submit"
           :disabled="subscriptor.loading"
         >
@@ -72,11 +89,6 @@ export default {
 
   data() {
     return {
-      rules: {
-				required: value => !!value || 'Este campo es obligatorio.',
-				phone: value => value?.length <= 11 || 'El número telefónico no debe ser mayor a 11 caracteres.',
-        email: value => /.+@.+/.test(value) || 'El Correo Electrónico no es válido',
-			},
       subscriptor: {
         loading: false,
         data: {}
@@ -87,45 +99,26 @@ export default {
   methods: {
     sendData(){
       if (Object.keys(this.subscriptor.data).length < 4) {
-        this.$root.notifications.show({
-          title: 'Error!',
-          info: 'Todos los campos deben estar completados',
-          color: 'error',
-          icon: 'mdi-close-circle-outline'
-        })
+        this.$root.notifications.showNotification('Todos los campos deben estar completados', 'info')
         return false
       }
 
       this.subscriptor.loading = true
+
       try {
         repository.createNewsletter(this.subscriptor.data).then(res => {
           if(res.status == 200){
-            this.$root.notifications.show({
-              title: 'Operación Exitosa!',
-              info: 'Se ha enviado el formulario correctamente',
-              color: 'success',
-              icon: 'mdi-check-circle-outline'
-            })
+            this.$root.notifications.showNotification('Se ha enviado el formulario correctamente')
           }
         }).catch((error)=>{
           console.log(error);
-          this.$root.notifications.show({
-            title: 'Error!',
-            info: 'Ha ocurrido un error en el servidor, intente de nuevo más tarde',
-            color: 'error',
-            icon: 'mdi-close-circle-outline'
-          })
+          this.$root.notifications.showNotification('Ha ocurrido un error en el servidor, intente de nuevo más tarde', 'error')
         }).finally(() => {
           this.subscriptor.loading = false
         })
       } catch (error) {
         console.log("Error",error)
-        this.$root.notifications.show({
-          title: 'Error!',
-          info: 'Ha ocurrido un error en el servidor, intente de nuevo más tarde',
-          color: 'error',
-          icon: 'mdi-close-circle-outline'
-        })
+        this.$root.notifications.showNotification('Ha ocurrido un error en el servidor, intente de nuevo más tarde', 'error')
       }
     }
   },
@@ -133,8 +126,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  $color-primary: orange;
-  $color-secondary: #009CD9;
+  $primary-color: #D8AD3D;
+  $secondary-color: #009CD9;
 
   .container {
     &__row {
@@ -151,7 +144,7 @@ export default {
   }
 
   .form {
-    padding: 0px 150px;
+    padding: 0px 250px;
 
     &__label {
       font-family: 'Open Sans', sans-serif !important;
@@ -162,34 +155,54 @@ export default {
     }
 
     &__input {
-      width: 95%;
-      height: 40px;
+      width: 85%;
+      height: 55px;
       padding: 0 16px;
       border: 2px solid #ddd;
       font-family: 'Rubik', sans-serif;
       outline: 0;
-      transition: .2s;
+      transition: 0.2s;
       margin-top: 10px;
       display: block;
     }
 
     &__input:focus {
-      border-color: $color-primary;
+      border-color: $primary-color !important;
+    }
+
+    &__input:required:invalid {
+      border-color: #B72C2C;
     }
 
     &__send-button {
       width: 170px;
       height: 55px !important;
       color: white;
-      background-color: $color-primary;
       margin: 50px;
       border-radius: 30px;
+      border: none !important;
       text-transform: uppercase;
       font-weight: bold;
     }
 
     &__send-button:hover {
-      background-color: $color-secondary !important;
+      background-color: $secondary-color !important;
+    }
+
+    &__send-button--default {
+      background-color: $primary-color;
+    }
+
+    &__send-button--disabled {
+      cursor: not-allowed;
+      background-color: rgb(229, 229, 229) !important;
+      pointer-events: none;
+    }
+
+    &__input--disabled {
+      cursor: not-allowed;
+      background-color: rgb(229, 229, 229) !important;
+      pointer-events: none;
     }
   }
 </style>
