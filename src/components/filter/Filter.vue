@@ -43,6 +43,9 @@
 
   .card-filter {
     font-family: "Open Sans";
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 23px;
     border-radius: 10px;
     box-shadow: 0px 4px 40px 0px #00000012;
     padding: 24px;

@@ -15,7 +15,7 @@
           </figure>
           <div class="container__body-card">
             <h3 class="container__body-card-h3">{{ article.title }}</h3>
-            <p>
+            <p class="container__body-card-p">
               {{ article.content }}
             </p>
             <a href="#" class="container__read-more">
@@ -132,9 +132,18 @@ export default {
     &__body-card-h3 {
       margin: 0 0 18px 0;
       font-family: "Open Sans";
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 24px;
       letter-spacing: 0.06em;
       color: var(--title-color);
       transition: color 0.3s ease-out;
+    }
+
+    &__body-card-p {
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 24px;
     }
 
     &__card:has(:hover, :focus) {
@@ -152,7 +161,9 @@ export default {
     &__read-more {
       text-transform: uppercase;
       color: $primary-color;
-      font-weight: bold;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 26px;
       display: none;
       align-items: center;
       text-decoration: none;

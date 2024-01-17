@@ -1,82 +1,82 @@
 <template>
-  <div class="container">
+  <div>
     <form class="form" @submit.prevent="sendData">
-      <div class="container__row">
-        <div class="container__col--6">
-          <label class="form__label" for="firstname">NOMBRE</label>
-          <input
-            id="firstname"
-            :class="{
-              'form__input': true,
-              'form__input--disabled': (subscriptor.loading)
-            }"
-            type="text"
-            v-model="subscriptor.data.firstname"
-            :disabled="subscriptor.loading"
-            required
-          >
+      <div class="container">
+        <div class="container__row">
+          <div class="container__col--6">
+            <label class="form__label" for="firstname">NOMBRE</label>
+            <input
+              id="firstname"
+              :class="{
+                'form__input': true,
+                'form__input--disabled': (subscriptor.loading)
+              }"
+              type="text"
+              v-model="subscriptor.data.firstname"
+              :disabled="subscriptor.loading"
+              required
+            >
+          </div>
+          <div class="container__col--6">
+            <label class="form__label" for="lastname">APELLIDO</label>
+            <input
+              id="lastname"
+              :class="{
+                'form__input': true,
+                'form__input--disabled': (subscriptor.loading)
+              }"
+              type="text"
+              v-model="subscriptor.data.lastname"
+              :disabled="subscriptor.loading"
+              required
+            >
+          </div>
         </div>
-        <div class="container__col--6">
-          <label class="form__label" for="lastname">APELLIDO</label>
-          <input
-            id="lastname"
-            :class="{
-              'form__input': true,
-              'form__input--disabled': (subscriptor.loading)
-            }"
-            type="text"
-            v-model="subscriptor.data.lastname"
-            :disabled="subscriptor.loading"
-            required
-          >
+        <div class="container__row">
+          <div class="container__col--6">
+            <label class="form__label" for="email">MAIL</label>
+            <input
+              id="email"
+              :class="{
+                'form__input': true,
+                'form__input--disabled': (subscriptor.loading)
+              }"
+              type="email"
+              v-model="subscriptor.data.email"
+              :disabled="subscriptor.loading"
+              required
+            >
+          </div>
+          <div class="container__col--6">
+            <label class="form__label" for="phone">TELÉFONO</label>
+            <input
+              id="phone"
+              :class="{
+                'form__input': true,
+                'form__input--disabled': (subscriptor.loading)
+              }"
+              type="number"
+              min="0"
+              v-model="subscriptor.data.phone"
+              :disabled="subscriptor.loading"
+              required
+            >
+          </div>
         </div>
+        <center>
+          <button
+            :class="{
+              'form__send-button': true,
+              'form__send-button--disabled': (subscriptor.loading),
+              'form__send-button--default': (!subscriptor.loading)
+            }"
+            type="submit"
+            :disabled="subscriptor.loading"
+          >
+            Enviar
+          </button>
+        </center>
       </div>
-
-      <div class="container__row">
-        <div class="container__col--6">
-          <label class="form__label" for="email">MAIL</label>
-          <input
-            id="email"
-            :class="{
-              'form__input': true,
-              'form__input--disabled': (subscriptor.loading)
-            }"
-            type="email"
-            v-model="subscriptor.data.email"
-            :disabled="subscriptor.loading"
-            required
-          >
-        </div>
-        <div class="container__col--6">
-          <label class="form__label" for="phone">TELÉFONO</label>
-          <input
-            id="phone"
-            :class="{
-              'form__input': true,
-              'form__input--disabled': (subscriptor.loading)
-            }"
-            type="number"
-            min="0"
-            v-model="subscriptor.data.phone"
-            :disabled="subscriptor.loading"
-            required
-          >
-        </div>
-      </div>
-
-      <center>
-        <button
-          :class="{
-            'form__send-button': true,
-            'form__send-button--disabled': (subscriptor.loading),
-            'form__send-button--default': (!subscriptor.loading)
-          }"
-          type="submit"
-          :disabled="subscriptor.loading"
-        >
-          Enviar
-        </button>
-      </center>
     </form>
   </div>
 </template>
@@ -150,16 +150,19 @@ export default {
       font-family: 'Open Sans', sans-serif !important;
       font-size: 13px;
       font-weight: 700;
+      line-height: 24px;
       color: #24272A;
       display: block;
     }
 
     &__input {
       width: 85%;
-      height: 55px;
+      height: 50px;
       padding: 0 16px;
-      border: 2px solid #ddd;
-      font-family: 'Rubik', sans-serif;
+      border: 1px solid #CFCFCF;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 24px;
       outline: 0;
       transition: 0.2s;
       margin-top: 10px;
@@ -179,10 +182,12 @@ export default {
       height: 55px !important;
       color: white;
       margin: 50px;
-      border-radius: 30px;
+      border-radius: 50px;
       border: none !important;
       text-transform: uppercase;
-      font-weight: bold;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 26px;
     }
 
     &__send-button:hover {
