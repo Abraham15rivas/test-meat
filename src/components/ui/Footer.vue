@@ -31,4 +31,21 @@ export default {
       color: #3F454A !important;
     }
   }
+
+  /* Media query para tabletas */
+  @media (max-width: 768px) and (min-width: 425px) {
+    .footer {
+      &__title {
+        font-size: 80px !important;
+      }
+    }
+  }
+
+  @media (max-width: 426px) {
+    .footer {
+      &__title {
+        font-size: 40px !important;
+      }
+    }
+  }
 </style>

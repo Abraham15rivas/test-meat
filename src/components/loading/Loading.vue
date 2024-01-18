@@ -24,6 +24,7 @@ export default {
     align-items: flex-end;
     justify-content: space-between;
     margin: 0 auto;
+    padding: 30px;
 
     &__balls {
       width: 30px;

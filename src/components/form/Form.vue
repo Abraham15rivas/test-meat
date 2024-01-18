@@ -204,4 +204,45 @@ export default {
       pointer-events: none;
     }
   }
+
+  /* Media query para tabletas */
+  @media (max-width: 768px) and (min-width: 425px) {
+    .form {
+      padding: 0px 100px;
+    }
+  }
+
+  @media (max-width: 426px) {
+    .form {
+      padding: 0px 50px;
+
+      &__row {
+        flex-direction: column !important;
+      }
+
+      &__send-button {
+        width: 120px;
+        height: 40px !important;
+        font-size: 12px;
+      }
+
+      &__label {
+        font-size: 10px;
+      }
+
+      &__input {
+        width: 85%;
+        height: 35px;
+        padding: 0 16px;
+        border: 1px solid #CFCFCF;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 24px;
+        outline: 0;
+        transition: 0.2s;
+        margin-top: 10px;
+        display: block;
+      }
+    }
+  }
 </style>

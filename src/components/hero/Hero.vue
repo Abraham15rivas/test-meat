@@ -62,4 +62,29 @@
       top: 280px;
     }
   }
+
+  /* Media query para tabletas */
+  @media (max-width: 768px) and (min-width: 425px) {
+    .hero {
+      &__title {
+        top: 1%;
+        width: 500px;
+        font-size: 80px !important;
+      }
+    }
+  }
+
+  @media (max-width: 426px) {
+    .hero {
+      &__content__title {
+        width: 150px !important;
+      }
+
+      &__title {
+        top: 1%;
+        width: 150px !important;
+        font-size: 40px !important;
+      }
+    }
+  }
 </style>

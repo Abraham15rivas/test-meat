@@ -56,4 +56,22 @@ export default {
       width: 60%;
     }
   }
+
+  /* Media query para tabletas */
+  @media (max-width: 768px) {
+    .container {
+      &__col--1 {
+        padding-left: 0px;
+        padding-bottom: 20px;
+        width: 100%;
+      }
+
+      &__col--2 {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        padding: 0px;
+      }
+    }
+  }
 </style>

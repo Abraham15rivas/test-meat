@@ -176,4 +176,32 @@ export default {
       overflow: hidden;
     }
   }
+
+  /* Media query para tabletas */
+  @media (max-width: 768px) and (min-width: 425px)  {
+    .container {
+      &__cards {
+        display: grid;
+        margin-inline: auto;
+        max-width: 768px;
+        padding-inline: 24px;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 24px;
+      }
+    }
+  }
+
+  @media (max-width: 426px) {
+    .container {
+      &__cards {
+        display: grid;
+        margin-inline: auto;
+        max-width: 426px;
+        padding-inline: 24px;
+        grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+        gap: 24px;
+      }
+    }
+  }
+
 </style>
